@@ -32,6 +32,7 @@
         </div>
         </nav>
         <div class="container-fluid">
+            <h1>Welcome to the frequently asked questions section!</h1><br>
             <p1>QUE. When and how can i apply for Indian oil scholarship?<br><br> ANS. From 1st September to 30th September Only.Please visit IOCL website www.iocl.com and click on the link given there OR directly apply online on www.applicationnew.com/ioclscholar.If you are facing any problem in Online system then download application FORM from www.applicationnew.com/ioclscholar only and send to the address given. </p1><br><br>
             <p1>QUE. Who can apply for the scholarship?<br><br> ANS. Students who have taken admission in class 11th (10+)/first year of current academic year in ITI(2years course) in school/ institutions recognized by the central/State Governments and meet the eligibility criteria (details available on the website:www.iocl.com OR www.applicationnew.com/ioclscholar ) can apply for the scholarship.
 

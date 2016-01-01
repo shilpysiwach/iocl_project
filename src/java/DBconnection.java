@@ -13,6 +13,7 @@ import static java.lang.System.out;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -78,8 +79,10 @@ public class DBconnection extends HttpServlet {
       } 
                
         Enumeration value = request.getParameterNames(); */
-        String tenderDt = request.getParameter("tenderDt");
-        tenderDt = "2000-01-01";
+      //  String tenderDt = request.getParameter("tenderDt");
+      //  tenderDt = "";
+       // SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+     //   String date= formatter.format("20151231");
         Connection con = null;
         String tenderId = null;
         PreparedStatement pS = null;
@@ -91,6 +94,7 @@ public class DBconnection extends HttpServlet {
             Class.forName("oracle.jdbc.OracleDriver");
             String url = "jdbc:oracle:thin:@localhost:1521:XE";
             con = DriverManager.getConnection(url, "tdps", "hr");
+            
             if (con != null) {
                 String getTenderID = "select TENDER_ID_SEQ.NEXTVAL from dual";
                 pS = con.prepareStatement(getTenderID);
@@ -104,15 +108,15 @@ public class DBconnection extends HttpServlet {
                 }
 
                 String sqlInsert = "INSERT INTO TENDER_BOOK (UNIQUE_ID,DEPT_ID,LOC_ID,"
-                        + " TENDER_ID,TENDER_DATE,CREATED_BY,CREATED_ON,TENDER_TYPE,"
-                        + " TENDER_MODE) VALUES(?,?,?,?,to_date(?,'yyyy-mm-dd'),?,SYSDATE,?,?)";
+                        + " TENDER_ID,CREATED_BY,CREATED_ON,TENDER_TYPE,"
+                        + " TENDER_MODE) VALUES(?,?,?,?,?,SYSDATE,?,?)";
                 pS = con.prepareStatement(sqlInsert);
                 cnt = 0;
                 pS.setString(++cnt, tenderId);
                 pS.setString(++cnt, "12");
                 pS.setString(++cnt, "3300");//user.loc_code
                 pS.setString(++cnt, tenderId);
-                pS.setString(++cnt, tenderDt);
+               // pS.setString(++cnt, tenderDt);
                 pS.setString(++cnt, "00504623");//user.emp_code);
                 pS.setString(++cnt, tenderType);
                 pS.setString(++cnt, mode);

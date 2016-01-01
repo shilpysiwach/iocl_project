@@ -65,7 +65,7 @@
         <div class="col-sm-2 sidenav">
         <ul class="nav nav-pills nav-stacked navbar-inverse" role="tablist">
     <li><a href="">Set values to variables</a></li>
-    <li><a href="prequalificationcriteria.jsp">Prequalification criteria</a></li>
+    <li><a href="prequalificationcriteria.jsp">Pre qualification criteria</a></li>
     <li><a href="NITchecklistformat.jsp">NIT checklist format</a></li>
     <li><a href="declaration.jsp">Declaration</a></li>
     <li><a href="specification.jsp">Specification</a></li>  
@@ -74,70 +74,37 @@
         </ul><br>
         </div>
         <div class="col-sm-8 text-left well"> 
-    <form method="Post" action="DBconnection">
-   
-    <table id="data" >
-        
-        <caption><h2>TABLE</h2></caption>
-        <tbody>
-        <tr>
-            <th>KEY</th> 
-            <th>VALUES</th>
-        </tr>
-        </tbody>
-        <%
-            Class.forName("oracle.jdbc.OracleDriver");
-            String url = "jdbc:oracle:thin:@localhost:1521:XE";
-            Connection con = DriverManager.getConnection(url, "tdps", "hr");
-            if (con != null) {
-                Statement st = con.createStatement();
-                ResultSet result = st.executeQuery("SELECT * FROM TEMPLATE_SHEET");
-                while(result.next()){
-                    out.println("<tr>");
-                    out.println("<td>");
-                     out.println(result.getObject("KEY").toString());
-                    out.println("</td>");
-                    
-                    out.println("<td contenteditable='true'>");
-                     out.println(result.getObject("VALUE").toString());
-                    out.println("</td>");
-                    out.println("</tr>");
-                }
-            }
-        
-        %>
-        
-    </table>
-            
-</form>
-        <form method="processRequest" action="DBconnection" enctype='multipart/form-data'>
-            <tr>  <input type="Button" value="Add more rows" onClick="AddRows()"> 
-            <button type="submit" style="margin-left:550px" onClick="GetID()">Save and continue</button></tr>
-            
+        <form method="processRequest" action="FormUpload" enctype='multipart/form-data'>
+        <h3>File Upload:</h3>
+        Select a file to upload: <br><br>
+        <input type="file" name="file" size="50" />
+        <br><br>
+        <input type="submit" name="docs-file" value="Upload File" />
         </form>
-    </div>
-            <div class="col-sm-2 sidenav">
-                 <ul class="nav nav-pills nav-stacked navbar-inverse" role="dropdown">
-    <li src="NIT_format.docx"><a href="">Aviation</a></li>
-    <li><a href="">S & D</a></li>
-     <li><a href="">Engg. and projects</a></li>
-     <li><a href="">Finance</a></li>
-     <li><a href="">Internal audit</a></li>
-     <li><a href="">HR</a></li>
-     <li><a href="">Information systems</a></li>
-     <li><a href="">LPG</a></li>
-     <li><a href="">Lubes</a></li>
-     <li><a href="">M&I</a></li>
-     <li><a href="">Operations</a></li>
-     <li><a href="">Planning</a></li>
-     <li><a href="">Consumer sales</a></li>
-     <li><a href="">Quality control</a></li>
-     <li><a href="">H,S&E</a></li>
-     <li><a href="">Retail sales</a></li>
-     <li><a href="">training and library</a></li>
-     <li><a href="">Vigilance</a></li>
-     <li><a href="">Law</a></li>
-     <li><a href="">Corporate communications</a></li>
+       
+        </div>
+        <div class="col-sm-2 sidenav">
+        <ul class="nav nav-pills nav-stacked navbar-inverse" role="dropdown">
+      <li><a href="Template File/NIT_format.docx">Aviation</a></li>
+      <li><a href="Template File/NIT_format.docx">S & D</a></li>
+      <li><a href="Template File/NIT_format.docx">Engg. and projects</a></li>
+      <li><a href="Template File/NIT_format.docx">Finance</a></li>
+      <li><a href="Template File/NIT_format.docx">Internal audit</a></li>
+      <li><a href="Template File/NIT_format.docx">HR</a></li>
+      <li><a href="Template File/NIT_format.docx">Information systems</a></li>
+      <li><a href="Template File/NIT_format.docx">LPG</a></li>
+      <li><a href="Template File/NIT_format.docx">Lubes</a></li>
+      <li><a href="Template File/NIT_format.docx">M&I</a></li>
+      <li><a href="Template File/NIT_format.docx">Operations</a></li>
+      <li><a href="Template File/NIT_format.docx">Planning</a></li>
+      <li><a href="Template File/NIT_format.docx">Consumer sales</a></li>
+      <li><a href="Template File/NIT_format.docx">Quality control</a></li>
+      <li><a href="Template File/NIT_format.docx">H,S&E</a></li>
+      <li><a href="Template File/NIT_format.docx">Retail sales</a></li>
+      <li><a href="Template File/NIT_format.docx">training and library</a></li>
+      <li><a href="Template File/NIT_format.docx">Vigilance</a></li>
+      <li><a href="Template File/NIT_format.docx">Law</a></li>
+      <li><a href="Template File/NIT_format.docx">Corporate communications</a></li>
      
   </ul>
             </div>

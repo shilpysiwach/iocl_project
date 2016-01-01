@@ -46,14 +46,10 @@
      <div class="container-fluid text-center">
         <div class="row-content">
         <div class="col-sm-2 sidenav">
-        <ul class="nav nav-pills nav-stacked navbar-inverse" role="tablist">
-    <li><a href="tender.jsp">Create tender</a></li>
-     <li><a href="tender.jsp">My tenders</a></li>
-      <li><a href="tender.jsp">Canceled tenders</a></li>
-       <li><a href="tender.jsp">Archived tenders</a></li>
-      <li><a href="tender.jsp">Status of tenders</a></li>
-      
-        </ul>
+            <a class="texthover" title="Indian oil logo" style="background-color:#FFFFFF;color:#000000;text-decoration:none"> <img src="css/logo.gif" alt="Indian oil logo" style="width:180px;height:180px;"></a><br><br><br><br>
+            <ul class="nav nav-pills nav-stacked navbar-inverse" role="tablist">
+      <li><a href="tenderfillinfo.jsp">How to fill tender form</a></li>
+      </ul>
         </div>
         </div>
        <div id="mycarousel" class="col-sm-8 text-left well carousel slide" data-ride="carousel">
@@ -112,6 +108,15 @@
       <span class="sr-only">Next</span>
     </a>
 </div>
+         <div class="col-sm-2 sidenav">
+     <ul class="nav nav-pills nav-stacked navbar-inverse" role="tablist">
+      <li><a href="tender.jsp">Create tender</a></li>
+     <li><a href="tender.jsp">My tenders</a></li>
+      <li><a href="tender.jsp">Canceled tenders</a></li>
+       <li><a href="tender.jsp">Archived tenders</a></li>
+      <li><a href="tender.jsp">Status of tenders</a></li>
+     </ul>
+     </div>
      </div>
       <script>
 $(document).ready(function(){
@@ -141,6 +146,8 @@ $(document).ready(function(){
     });
 });
 </script>
+     
+        
     </body>
    
 </html>

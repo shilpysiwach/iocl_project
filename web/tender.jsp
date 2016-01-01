@@ -54,7 +54,7 @@
                         </select> <br><br><br><br><br><br>      
 
                         <input type="submit" value="Save and continue" id="generateID"> &emsp;&emsp;&emsp;&emsp;
-                        <input type="button" value="Cancel"> 
+                        <a href="home.jsp"><input type="button" value="Cancel"></a>
                     </form>
                 </div>
             </div>

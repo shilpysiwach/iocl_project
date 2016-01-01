@@ -37,7 +37,7 @@
         <div class="col-sm-2 sidenav">
         <ul class="nav nav-pills nav-stacked navbar-inverse" role="tablist">
     <li class="active"><a href="variablevalues.jsp">Set values to variables</a></li>
-    <li><a href="prequalificationcriteria.jsp">Prequalification criteria</a></li>
+    <li><a href="prequalificationcriteria.jsp">Pre qualification criteria</a></li>
     <li><a href="">NIT checklist format</a></li>
     <li><a href="declaration.jsp">Declaration</a></li>
     <li><a href="specification.jsp">Specification</a></li>  
