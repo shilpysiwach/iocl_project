@@ -57,6 +57,7 @@ public class DBconnection extends HttpServlet {
         request.getRequestDispatcher("variablevalues.jsp").forward(request, response);
         String mode = request.getParameter("mode");
         String tenderType = request.getParameter("tenderType");
+       
      /*   Enumeration key = request.getParameterNames();
           while(key.hasMoreElements()) {
                String Key = (String)key.nextElement();
@@ -86,6 +87,8 @@ public class DBconnection extends HttpServlet {
         Connection con = null;
         String tenderId = null;
         PreparedStatement pS = null;
+        
+       // Statement st = null;
         ResultSet rst = null;
         boolean err = false;
         int cnt = 0;
@@ -106,17 +109,28 @@ public class DBconnection extends HttpServlet {
                 if (rst.next()) {
                     tenderId = "" + rst.getInt(1);
                 }
+              
+               String getdeptID = "select DEPT_ID FROM MST_DEPT WHERE DEPT_NAME='Aviation'";
+              pS = con.prepareStatement(getdeptID);
+              rst = pS.executeQuery();
+              rst.next();
+                String deptID = "" + rst.getInt(1);
+               
+             // String locID = "select LOC_ID FROM MST_LOC WHERE LOC_NAME=?";
 
                 String sqlInsert = "INSERT INTO TENDER_BOOK (UNIQUE_ID,DEPT_ID,LOC_ID,"
                         + " TENDER_ID,CREATED_BY,CREATED_ON,TENDER_TYPE,"
-                        + " TENDER_MODE) VALUES(?,?,?,?,?,SYSDATE,?,?)";
+                        + " TENDER_MODE,VARIABLE_VALUES, PQC, NIT_CHECKLIST, DECLARATION,"
+                        + " SPECIFICATION, TNC, GCC) VALUES(?,?,?,?,?,SYSDATE,?,?, "
+                        + " empty_blob(), empty_blob(), empty_blob(), empty_blob(), empty_blob(), "
+                        + "empty_blob(), empty_blob())";
                 pS = con.prepareStatement(sqlInsert);
                 cnt = 0;
                 pS.setString(++cnt, tenderId);
-                pS.setString(++cnt, "12");
-                pS.setString(++cnt, "3300");//user.loc_code
+                pS.setString(++cnt, deptID);
+                pS.setString(++cnt, "1099");//user.loc_code
                 pS.setString(++cnt, tenderId);
-               // pS.setString(++cnt, tenderDt);
+                //pS.setString(++cnt, tenderDt);
                 pS.setString(++cnt, "00504623");//user.emp_code);
                 pS.setString(++cnt, tenderType);
                 pS.setString(++cnt, mode);
@@ -124,6 +138,7 @@ public class DBconnection extends HttpServlet {
                 con.commit();
             }
         } catch (Exception ee) {
+            out.println(ee);
             err = true;
             try {
                 con.rollback();

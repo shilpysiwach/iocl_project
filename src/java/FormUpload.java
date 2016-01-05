@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -19,6 +20,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -26,7 +30,11 @@ import javax.servlet.http.Part;
  */
 @MultipartConfig
 public class FormUpload extends HttpServlet {
-
+private static final int MEMORY_THRESHOLD   = 1024 * 1024 * 3;  // 3MB
+    private static final int MAX_FILE_SIZE      = 1024 * 1024 * 40; // 40MB
+    private static final int MAX_REQUEST_SIZE   = 1024 * 1024 * 50; // 50MB
+    private static final String UPLOAD_DIRECTORY = "upload";
+    // location to store file uploaded
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -42,20 +50,27 @@ public class FormUpload extends HttpServlet {
         request.getRequestDispatcher("prequalificationcriteria.jsp").forward(request, response);
         InputStream inputStream = null; // input stream of the upload file
           // obtains the upload file part in this multipart request
-        Part filePart = request.getPart("docs-file");
+        Part filePart = request.getPart("docsfile");
+        
          // obtains input stream of the upload file
-        inputStream = filePart.getInputStream();
-    
+        inputStream = filePart.getInputStream(); 
+      // Create a factory for disk-based file items
+       String uid = request.getParameter("uid");//parameter name to be modified 
+        uid = "197";
         Connection conn= null;
         PreparedStatement pS = null;
         ResultSet rst= null;
         int cnt = 0;
          try {
+             String fileName = "abc";
             Class.forName("oracle.jdbc.OracleDriver");
             String url = "jdbc:oracle:thin:@localhost:1521:XE";
             conn = DriverManager.getConnection(url, "tdps", "hr");
             if(conn!= null){
-               String uploadform = "select variable_values TENDER_BOOK where condition for update (VARIABLE_VALUES,PQC,NIT_CHECKLIST,DECLARATION,SPECIFICATION,TNC,GCC) values(empty_blob(),empty_blob(),empty_blob(),empty_blob(),empty_blob(),empty_blob(),empty_blob())"; 
+               String uploadform = "SELECT VARIABLE_VALUES FROM TENDER_BOOK WHERE UNIQUE_ID = " + uid + " for update";
+              WriteReadBLOB.writeBLOBStream(conn, inputStream, uploadform);
+              uploadform = "SELECT VARIABLE_VALUES FROM TENDER_BOOK WHERE UNIQUE_ID = " + uid;
+              WriteReadBLOB.downloadBLOBToFile(conn, uploadform, fileName);
                pS = conn.prepareStatement(uploadform);
                rst = pS.executeQuery();
              //  if(rst.next()){

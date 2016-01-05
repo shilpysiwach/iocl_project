@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -22,13 +22,12 @@ import oracle.sql.BLOB;
  */
 public class WriteReadBLOB {
 
-    private static GlobalVariables GV = new GlobalVariables();
+  private static GlobalVariables GV = new GlobalVariables();
 
   public static void writeBLOBStream(Connection conn, InputStream inputFileInputStream, String sqlText)
-          throws IOException, SQLException, ClassNotFoundException {
+          throws IOException, SQLException {
     //Logger log = LoggerFactory.getLogger(WriteReadBLOB.class);
     //FileInputStream inputFileInputStream = null;
-    
     OutputStream blobOutputStream = null;
     Statement stmt = null;
     ResultSet rset = null;
@@ -39,18 +38,13 @@ public class WriteReadBLOB {
     int totBytesRead = 0;
     int totBytesWritten = 0;
     try {
-       Class.forName("oracle.jdbc.OracleDriver");
-       String url = "jdbc:oracle:thin:@localhost:1521:XE";
-       conn = DriverManager.getConnection(url, "tdps", "hr");
-       stmt = conn.createStatement();
-       //inputBinaryFile = new File(inputBinaryFileName);
-     //  inputFileInputStream = new FileInputStream(inputBinaryFile);
-      if (conn != null) {
-      sqlText= "SELECT TEMPLATE FROM MST_DEPT WHERE DEPT_ID=101";//modify as per ur rqrmnt
+      stmt = conn.createStatement();
+      //inputBinaryFile = new File(inputBinaryFileName);
+      //inputFileInputStream = new FileInputStream(inputBinaryFile);
+      //sqlText= "SELECT image FROM   test_blob WHERE  id = 2 FOR UPDATE";
       rset = stmt.executeQuery(sqlText);
       //if (rset != null) {
       rset.next();
-      }
       uploadFile = ((OracleResultSet) rset).getBLOB(1);
       bufferSize = uploadFile.getBufferSize();
       // Notice that we are using an array of bytes. This is required 
@@ -62,7 +56,6 @@ public class WriteReadBLOB {
       // ASCII text file that would be sent to a CLOB.
       byteBuffer = new byte[bufferSize];
       blobOutputStream = uploadFile.getBinaryOutputStream();
-      
       while ((bytesRead = inputFileInputStream.read(byteBuffer)) != -1) {
         // After reading a buffer from the binary file, write the contents
         // of the buffer to the output stream using the write()
@@ -108,7 +101,7 @@ public class WriteReadBLOB {
     int bytesRead = 0;
     int totBytesRead = 0;
     int totBytesWritten = 0;
-    //snConnectionBean snB = null;
+   // snConnectionBean snB = null;
     boolean createNewFile = false;
     try {
       //stmt = conn.createStatement();
@@ -127,9 +120,9 @@ public class WriteReadBLOB {
        fileName = fileName.substring(0, t);
        }
        */
-      String filePath = "Template File/NIT_format.docx";//path of file to be read/display
+      String filePath = "filepath";
       //outputBinaryFile2 = File.createTempFile(fileName, fext, new File(filePath));
-      outputBinaryFile2 = new File(filePath + "/" + "NIT_format.docx");
+      outputBinaryFile2 = new File(filePath + "/" + fileName);
       //if (outputBinaryFile2.exists() && outputBinaryFile2.isFile()) {
       //blobInputStream = new FileInputStream(outputBinaryFile2);
       //chunkSize = 2048;
@@ -139,8 +132,8 @@ public class WriteReadBLOB {
         outputFileOutputStream = new FileOutputStream(outputBinaryFile2);
         if (conn == null) {
           try {
-            //snB = new snConnectionBean();
-            //conn = snB.setDbConnection();
+          //  snB = new snConnectionBean();
+          //  conn = snB.setDbConnection();
           } catch (Exception ignore) {
           }
         }
@@ -178,7 +171,10 @@ public class WriteReadBLOB {
           }
         } catch (Exception ign) {
         }
-        //log.info("Wrote BLOB column data to file {}.\n{} bytes read.\n{} bytes written.\n",                outputBinaryFile2.getName(), totBytesRead, totBytesWritten);
+        /*
+        log.info("Wrote BLOB column data to file {}.\n{} bytes read.\n{} bytes written.\n",
+                outputBinaryFile2.getName(), totBytesRead, totBytesWritten);
+        */
       }
     } catch (IOException e) {
       //log.error("Caught I/O Exception: (Write BLOB value to file - Streams Method)", e);
@@ -190,12 +186,9 @@ public class WriteReadBLOB {
       //e.printStackTrace();
       //throw e;
     } finally {
-        
-        /*
-      if (snB != null) {
-        snB.setCloseConnection(conn);
+    //  if (snB != null) {
+      //  snB.setCloseConnection(conn);
       }
-      
       /*
        if (createNewFile) {
        try {
@@ -208,10 +201,5 @@ public class WriteReadBLOB {
        }
        */
     }
-    try {
-                    conn.close();
-                } catch (Exception ig) {
-
-                }
   }
-}
+

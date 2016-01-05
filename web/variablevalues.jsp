@@ -79,32 +79,32 @@
         Select a file to upload: <br><br>
         <input type="file" name="file" size="50" />
         <br><br>
-        <input type="submit" name="docs-file" value="Upload File" />
+        <input type="submit" name="docsfile" value="Upload File" />
         </form>
        
         </div>
         <div class="col-sm-2 sidenav">
-        <ul class="nav nav-pills nav-stacked navbar-inverse" role="dropdown">
-      <li><a href="Template File/NIT_format.docx">Aviation</a></li>
-      <li><a href="Template File/NIT_format.docx">S & D</a></li>
-      <li><a href="Template File/NIT_format.docx">Engg. and projects</a></li>
-      <li><a href="Template File/NIT_format.docx">Finance</a></li>
-      <li><a href="Template File/NIT_format.docx">Internal audit</a></li>
-      <li><a href="Template File/NIT_format.docx">HR</a></li>
-      <li><a href="Template File/NIT_format.docx">Information systems</a></li>
-      <li><a href="Template File/NIT_format.docx">LPG</a></li>
-      <li><a href="Template File/NIT_format.docx">Lubes</a></li>
-      <li><a href="Template File/NIT_format.docx">M&I</a></li>
-      <li><a href="Template File/NIT_format.docx">Operations</a></li>
-      <li><a href="Template File/NIT_format.docx">Planning</a></li>
-      <li><a href="Template File/NIT_format.docx">Consumer sales</a></li>
-      <li><a href="Template File/NIT_format.docx">Quality control</a></li>
-      <li><a href="Template File/NIT_format.docx">H,S&E</a></li>
-      <li><a href="Template File/NIT_format.docx">Retail sales</a></li>
-      <li><a href="Template File/NIT_format.docx">training and library</a></li>
-      <li><a href="Template File/NIT_format.docx">Vigilance</a></li>
-      <li><a href="Template File/NIT_format.docx">Law</a></li>
-      <li><a href="Template File/NIT_format.docx">Corporate communications</a></li>
+        <ul class="nav nav-pills nav-stacked navbar-inverse" role="dropdown" name="deptID">
+      <li value="101"><a href="Template File/NIT_format.docx">Aviation</a></li>
+      <li value="102"><a href="Template File/NIT_format.docx">S & D</a></li>
+      <li value="103"><a href="Template File/NIT_format.docx">Engg. and projects</a></li>
+      <li value="104"><a href="Template File/NIT_format.docx">Finance</a></li>
+      <li value="105"><a href="Template File/NIT_format.docx">Internal audit</a></li>
+      <li value="106"><a href="Template File/NIT_format.docx">HR</a></li>
+      <li value="107"><a href="Template File/NIT_format.docx">Information systems</a></li>
+      <li value="108"><a href="Template File/NIT_format.docx">LPG</a></li>
+      <li value="109"><a href="Template File/NIT_format.docx">Lubes</a></li>
+      <li value="110"><a href="Template File/NIT_format.docx">M&I</a></li>
+      <li value="111"><a href="Template File/NIT_format.docx">Operations</a></li>
+      <li value="112"><a href="Template File/NIT_format.docx">Planning</a></li>
+      <li value="113"><a href="Template File/NIT_format.docx">Consumer sales</a></li>
+      <li value="114"><a href="Template File/NIT_format.docx">Quality control</a></li>
+      <li value="115"><a href="Template File/NIT_format.docx">H,S&E</a></li>
+      <li value="116"><a href="Template File/NIT_format.docx">Retail sales</a></li>
+      <li value="117"><a href="Template File/NIT_format.docx">training and library</a></li>
+      <li value="118"><a href="Template File/NIT_format.docx">Vigilance</a></li>
+      <li value="119"><a href="Template File/NIT_format.docx">Law</a></li>
+      <li value="120"><a href="Template File/NIT_format.docx">Corporate communications</a></li>
      
   </ul>
             </div>
